@@ -16,6 +16,7 @@ import csv
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
+#pretty standard google drive service builder
 def get_credentials():
 
     creds = None
@@ -42,7 +43,7 @@ def get_credentials():
     return service
 
 def create_folder(folder_name):
-        #gets service created above, and hard code folder id in to place all new data within it
+        #gets service created above, and insert your folder id in to place all new data within it
         service = get_credentials()
         folder_id = "FOLDER_ID"
 
@@ -88,11 +89,7 @@ def download_images(urls, tag, photo_info):
     with open('coordinates.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_NONE)
 
-        #COMMENTED SECTION ONLY DOWNLOADS LAT,LONG, AND PHOTOID TO SAVE TIME AND VISUALIZE LOCATION OF IMAGES
-        # writer.writerow(['Latitude', 'Longitude', "PhotoID", "Description", "Title", "Taken", "Real Name", "User Name"])
-        #
-        # for field in photo_info:
-        #     writer.writerow([field[0], field[1], field[2]])
+        #write in field names, then add info from data into the fields
         writer.writerow(['Latitude', 'Longitude', "PhotoID", "Description", "Title", "Taken", "Real Name", "User Name"])
 
         for field in photo_info:
